@@ -12,3 +12,4 @@ email_validator
 # note: for local development, replace 'Flask-Admin' above with a reference to
 # your local copy of the repo e.g. '-e .' if you're installing this from the
 # repo's root directory
+werkzeug>=3.1.4 # not directly required, pinned by Snyk to avoid a vulnerability
