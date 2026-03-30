@@ -76,8 +76,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libgeos-c1v5
-      - name: Check out repository code
-        uses: actions/checkout@v6
       - name: Set up PostgreSQL hstore module
         env:
           PGPASSWORD: postgres

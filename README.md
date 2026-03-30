@@ -4,7 +4,7 @@ Flask-Admin is now part of Pallets-Eco, an open source organization managed by t
 Pallets team to facilitate community maintenance of Flask extensions. Please update
 your references to `https://github.com/pallets-eco/flask-admin.git`.
 
-[![image](https://github.com/pallets-eco/flask-admin/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/pallets-eco/flask-admin/actions/workflows/test.yaml)
+[![image](https://github.com/pallets-eco/flask-admin/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/pallets-eco/flask-admin/actions/workflows/tests.yaml)
 
 ## Pallets Community Ecosystem
 
