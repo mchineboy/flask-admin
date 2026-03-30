@@ -253,49 +253,21 @@
 {% endmacro %}
 
 {% macro form_css() %}
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/select2/select2.css', v='4.2.1') }}" rel="stylesheet">
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/select2/select2-bootstrap4.css', v='1.4.6') }}" rel="stylesheet">
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/bootstrap-daterangepicker/daterangepicker-bs4.css', v='1.3.22') }}" rel="stylesheet">
+  <link href="{{ admin_static.url(filename='vendor/select2/select2.css', v='4.2.1') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
+  <link href="{{ admin_static.url(filename='vendor/select2/select2-bootstrap4.css', v='1.4.6') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
+  <link href="{{ admin_static.url(filename='vendor/bootstrap-daterangepicker/daterangepicker-bs4.css', v='1.3.22') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
   {% if config.MAPBOX_MAP_ID %}
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/leaflet/leaflet.css', v='1.0.2') }}" rel="stylesheet">
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/leaflet/leaflet.draw.css', v='0.4.6') }}" rel="stylesheet">
+  <link href="{{ admin_static.url(filename='vendor/leaflet/leaflet.css', v='1.0.2') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
+  <link href="{{ admin_static.url(filename='vendor/leaflet/leaflet.draw.css', v='0.4.6') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
   {% endif %}
   {% if editable_columns %}
-  <link 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- href="{{ admin_static.url(filename='vendor/x-editable/css/bootstrap4-editable.css', v='1.5.1.1') }}" rel="stylesheet">
+  <link href="{{ admin_static.url(filename='vendor/x-editable/css/bootstrap4-editable.css', v='1.5.1.1') }}" rel="stylesheet" {{ admin_csp_nonce_attribute }}>
   {% endif %}
 {% endmacro %}
 
 {% macro form_js() %}
   {% if config.MAPBOX_MAP_ID %}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
->
+  <script {{ admin_csp_nonce_attribute }}>
   window.MAPBOX_MAP_ID = "{{ config.MAPBOX_MAP_ID }}";
   {% if config.MAPBOX_ACCESS_TOKEN %}
   window.MAPBOX_ACCESS_TOKEN = "{{ config.MAPBOX_ACCESS_TOKEN }}";
@@ -305,48 +277,20 @@
   window.DEFAULT_CENTER_LONG = "{{ config.DEFAULT_CENTER_LONG }}";
   {% endif %}
   </script>
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='vendor/leaflet/leaflet.js', v='1.0.2') }}"></script>
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='vendor/leaflet/leaflet.draw.js', v='0.4.6') }}"></script>
+  <script src="{{ admin_static.url(filename='vendor/leaflet/leaflet.js', v='1.0.2') }}" {{ admin_csp_nonce_attribute }}></script>
+  <script src="{{ admin_static.url(filename='vendor/leaflet/leaflet.draw.js', v='0.4.6') }}" {{ admin_csp_nonce_attribute }}></script>
   {% if config.MAPBOX_SEARCH %}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
->
+  <script {{ admin_csp_nonce_attribute }}>
   window.MAPBOX_SEARCH = "{{ config.MAPBOX_SEARCH }}";
   </script>
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&key={{ config.get('GOOGLE_MAPS_API_KEY') }}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&key={{ config.get('GOOGLE_MAPS_API_KEY') }}" {{ admin_csp_nonce_attribute }}></script>
   {% endif %}
   {% endif %}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='vendor/bootstrap-daterangepicker/daterangepicker.js', v='1.3.22') }}"></script>
+  <script src="{{ admin_static.url(filename='vendor/bootstrap-daterangepicker/daterangepicker.js', v='1.3.22') }}" {{ admin_csp_nonce_attribute }}></script>
   {% if editable_columns %}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='vendor/x-editable/js/bootstrap4-editable.min.js', v='1.5.1.1') }}"></script>
+  <script src="{{ admin_static.url(filename='vendor/x-editable/js/bootstrap4-editable.min.js', v='1.5.1.1') }}" {{ admin_csp_nonce_attribute }}></script>
   {% endif %}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='admin/js/form.js', v='1.0.1') }}"></script>
+  <script src="{{ admin_static.url(filename='admin/js/form.js', v='1.0.1') }}" {{ admin_csp_nonce_attribute }}></script>
 {% endmacro %}
 
 {% macro extra() %}

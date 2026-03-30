@@ -35,10 +35,7 @@
     <span class="fa fa-trash glyphicon glyphicon-trash"></span>
   </button>
 </form>
-<script
-{% if csp_nonce is defined %}
-nonce="{{ csp_nonce() }}"
-{% endif %}>
+<script {{ admin_csp_nonce_attribute }}>
   document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.confirm-button');
     for (let i = 0; i < buttons.length; i++) {
