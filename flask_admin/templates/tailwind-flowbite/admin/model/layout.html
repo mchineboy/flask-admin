@@ -5,10 +5,7 @@
             <a class="block w-full py-1 px-6 font-normal text-gray-900 whitespace-no-wrap border-0 filter">{{ k }}</a>
         {% endfor %}
     </div>
-    <script
-{% if csp_nonce is defined %}
-nonce="{{ csp_nonce() }}"
-{% endif %}>
+    <script {{ admin_csp_nonce_attribute }}>
         const buttons = document.querySelectorAll('.field-filters a.filter');
         buttons.forEach(function (button) {
             button.addEventListener('click', function (e) {

@@ -1,6 +1,91 @@
 Changelog
 =========
 
+2.0.2
+-----
+
+* Adds support for Python 3.14: https://github.com/pallets-eco/flask-admin/pull/2685
+* Adds a MenuDivider item for bootstrap themes: https://github.com/pallets-eco/flask-admin/pull/2696
+* Field errors are now shown in red text for bootstrap themes: https://github.com/pallets-eco/flask-admin/pull/2699
+
+2.0.1
+-----
+
+* Fix documentation
+* Update arabic translations
+
+2.0.0
+-----
+
+Breaking changes:
+
+* Removed support for Python <3.10
+* Use of the `boto` library has been replaced by `boto3`. S3FileAdmin and S3Storage now accept an `s3_client` parameter taking a `boto3.client('s3')` instance rather than `aws_access_key_id`, `aws_secret_access_key`, and `region` parameters.
+* Azure Blob Storage SDK has been upgraded from the legacy version (v2) to the latest version (v12). AzureFileAdmin now accept `blob_service_client` rather than `connection_string` to give more flexibility with connection types.
+* Flask-BabelEx is no longer supported; the package is no longer maintained and Flask-Babel is recommended/active instead.
+* Mongoengine support in Flask-Admin no longer uses Flask-Mongoengine, as that library is no longer actively maintained.
+* Bootstrap2 and Bootstrap3 themes are no longer available.
+* `Admin()` now takes a `theme` parameter that encapsulates all of the configuration options for theming the admin instance. This replaces the `template_mode` parameter.
+* All remaining Flask-Admin config has been namespaced under `FLASK_ADMIN_`.
+
+.. list-table:: Configuration Changes
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Config variable name
+     - What's changed
+   * - FLASK_ADMIN_SWATCH
+     - Removed; use `Theme(swatch=...)` instead
+   * - FLASK_ADMIN_FLUID_LAYOUT
+     - Removed; use `Theme(fluid=...)` instead
+   * - MAPBOX_MAP_ID
+     - Renamed to FLASK_ADMIN_MAPBOX_MAP_ID
+   * - MAPBOX_SEARCH
+     - Renamed to FLASK_ADMIN_MAPBOX_SEARCH
+   * - MAPBOX_ACCESS_TOKEN
+     - Renamed to FLASK_ADMIN_MAPBOX_ACCESS_TOKEN
+   * - GOOGLE_MAPS_API_KEY
+     - Renamed to FLASK_ADMIN_GOOGLE_MAPS_API_KEY
+   * - DEFAULT_CENTER_LAT
+     - Renamed to FLASK_ADMIN_DEFAULT_CENTER_LAT
+   * - DEFAULT_CENTER_LONG
+     - Renamed to FLASK_ADMIN_DEFAULT_CENTER_LONG
+   * - ADMIN_RAISE_ON_INTEGRITY_ERROR
+     - Renamed to FLASK_ADMIN_RAISE_ON_INTEGRITY_ERROR
+   * - ADMIN_RAISE_ON_VIEW_EXCEPTION
+     - Renamed to FLASK_ADMIN_RAISE_ON_VIEW_EXCEPTION
+
+New functionality:
+
+* Added support for Python <=3.13
+* The default query for pymongo can be overridden
+* Flask async routes are supported
+* Flask-Admin now supports the `host_matching` mode of Flask apps. See documentation for how to configure this where needed.
+* Flask-Admin is now compatible with SQLAlchemy v2+, Flask v3+, WTForms v3+, and Pillow v10+.
+* Flask-Admin now declares its dependencies and supported dependency versions more cleanly, including using pip extras. If you use Flask-Admin with SQLAlchemy, for example, you should use `pip install flask-admin[sqlalchemy]` or list `flask-admin[sqlalchemy]` in your requirements.txt or pyproject.toml files.
+* Apps using content security policies to restrict the assets that can be loaded can now whitelist Flask-Admin's assets by passing a `csp_nonce_generator` function to the Admin instance. See examples or documentation for how to configure this where needed.
+* `page_size_options` can now be configured on Admin models, to restrict the page sizes that users can select. These are now enforced properly and cannot be bypassed by URL hacking.
+
+Fixes:
+
+* Bootstrap menu icons should show up properly and not duplicated
+* Redis CLI commands are now case insensitive
+* SQLAlchemy boolean filters now convert "1" and "0" to Python booleans, which fixes a type coercion issue with psycopg(3).
+* Jinja templates can now be loaded in StrictUndefined mode.
+* Remove an implicit dependency on `packaging`
+* Fixed an error caused by the fallback implementation of `gettext()` (when used in templates)
+* Fixes compatibility with WTForms 3.2+.
+* The `Apply` button for filters will show/hide correctly again
+* Fix `translations_path` attribute when Flask-Admin is used with Flask-Babel
+* Some translation updates.
+* Date fields no longer override `widget` if set in `form_args`
+* “Save and Continue Editing” button no longer discards the “return URL” (allowing to retain filters when switching back to the list)
+
+Misc:
+
+* Translations and docs have been updated
+* Various type hinting improvements and fixes
+
 1.6.1
 -----
 

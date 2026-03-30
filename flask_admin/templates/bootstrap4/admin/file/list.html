@@ -86,42 +86,24 @@
                         {% if name != '..' and admin_view.can_delete_dirs %}
                         <form class="icon" method="POST" action="{{ get_url('.delete') }}">
                             {{ delete_form.path(value=path) }}
+                            {% if delete_form.csrf_token is defined and delete_form.csrf_token %}
                             {{ delete_form.csrf_token }}
-                            <button class="delete-button" role="button">
+                            {% endif %}
+                            <button onclick="return confirm('{{ _gettext('Are you sure you want to delete \\\'%(name)s\\\' recursively?', name=name) }}')">
                                 <i class="fa fa-times glyphicon glyphicon-remove"></i>
                             </button>
                         </form>
-                        <script
-{% if csp_nonce is defined %}
-nonce="{{ csp_nonce() }}"
-{% endif %}>
-                          $(function() {
-                            $('.delete-button').click(function() {
-                              var $this = $(this);
-                              return confirm({{ _gettext('Are you sure you want to delete \\\'%(name)s\\\' recursively?', name=name) }})
-                            });
-                          });
-                        </script>
                         {% endif %}
                     {% else %}
                     <form class="icon" method="POST" action="{{ get_url('.delete') }}">
                         {{ delete_form.path(value=path) }}
+                        {% if delete_form.csrf_token is defined and delete_form.csrf_token %}
                         {{ delete_form.csrf_token }}
-                        <button class="delete-button" role="button">
+                        {% endif %}
+                        <button onclick="return confirm('{{ _gettext('Are you sure you want to delete \\\'%(name)s\\\'?', name=name) }}')">
                             <i class="fa fa-trash glyphicon glyphicon-trash"></i>
                         </button>
                     </form>
-                    <script
-{% if csp_nonce is defined %}
-nonce="{{ csp_nonce() }}"
-{% endif %}>
-                      $(function() {
-                        $('.delete-button').click(function() {
-                          var $this = $(this);
-                          return confirm({{ _gettext('Are you sure you want to delete \\\'%(name)s\\\'?', name=name) }})
-                        });
-                      });
-                    </script>
                     {% endif %}
                 {%- endif -%}
                 {% endblock %}
@@ -209,9 +191,5 @@ nonce="{{ csp_nonce() }}"
     {{ actionslib.script(_gettext('Please select at least one file.'),
                          actions,
                          actions_confirmation) }}
-  <script 
-{% if csp_nonce is defined %}
-    nonce="{{ csp_nonce() }}"
-{% endif %}
- src="{{ admin_static.url(filename='admin/js/bs4_modal.js', v='1.0.0') }}"></script>
+  <script {{ admin_csp_nonce_attribute }} src="{{ admin_static.url(filename='admin/js/bs4_modal.js', v='1.0.0') }}"></script>
 {% endblock %}
